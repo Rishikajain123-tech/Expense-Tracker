@@ -101,5 +101,9 @@ Open `index.html` in your browser.
 - LinkedIn: https://www.linkedin.com/in/rishika-jain-926272388/
 
 ---
+<img width="942" height="895" alt="image" src="https://github.com/user-attachments/assets/55c3a1d6-0716-491e-b03f-8bebc9d34ce5" />
+<img width="627" height="766" alt="image" src="https://github.com/user-attachments/assets/77d7b73a-b94a-4e20-9f53-893bf44801de" />
+
+
 
 ⭐ If you like this project, consider giving it a star.
