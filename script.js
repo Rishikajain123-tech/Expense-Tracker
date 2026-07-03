@@ -19,13 +19,14 @@ const dummyTransactions = [
 
 
 const localStorageTransactions = JSON.parse(localStorage.getItem("transactions"));
-let transactions = localStorage.getItem("transactions") !==null ? localStorageTransactions:[];
-
+let transactions = localStorage.getItem("transactions") !== null
+    ? localStorageTransactions
+    : dummyTransactions;
 //add transactions
 function addTransaction(e){
-    e.preventDeafault();
+    e.preventDefault();
     if(
-        text.ariaValueMax.trim()==="" || amount.ariaValueMax.trim()===""
+        text.value.trim()==="" || amount.value.trim()===""
     ){
         alert("Please Enter Text And Value");
     }else{
@@ -36,7 +37,7 @@ function addTransaction(e){
         };
 
         transactions.push(transaction);
-        addTransaction(transaction);
+        addTransactionDOM(transaction);
         updatelocalstorage();
         updateValues();
         text.value="";
@@ -50,26 +51,29 @@ function generateID(){
 }
 
 function addTransactionDOM(transaction){
-    const sign = transaction[0].amount <0 ? "-" : "+";
+    const sign = transaction.amount <0 ? "-" : "+";
     const item = document.createElement("li");
     
     item.classList.add(
         transaction.amount <0 ? "minus" : "plus"
     );
 
-    item.innerHTML=`
-        ${transaction.text}<span>${Math.abs(
-            transaction.amount
-        )}</span>
-        <button class="delete-btn" onclick="removeTransaction(${transaction.id})">x</button>
-    `;
+    item.innerHTML = `
+    ${transaction.text}
+    <span>${sign}$${Math.abs(transaction.amount)}</span>
+    <button class="delete-btn" onclick="removeTransaction(${transaction.id})">x</button>
+`;
 
     list.appendChild(item);
 }
 
 function removeTransaction(id){
-    transactions = transactions.filter((transaction) => transaction.id !==id);
+    transactions = transactions.filter(
+        (transaction) => transaction.id !== id
+    );
+
     updatelocalstorage();
+    Init();
 }
 //update values
 function updateValues(){
